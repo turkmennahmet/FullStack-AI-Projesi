@@ -29,8 +29,12 @@ namespace ChatApi.Controllers
             var payload = JsonSerializer.Serialize(new { text = message.Text });
 
             // Python AI servisine POST
-            var response = await client.PostAsync("http://localhost:8000/predict",
-                new StringContent(payload, Encoding.UTF8, "application/json"));
+            var response = await client.PostAsync("https://fullstack-ai-projesi-1-r6ed.onrender.com/predict",
+            new StringContent(payload, Encoding.UTF8, "application/json")
+            );
+
+            response.EnsureSuccessStatusCode();
+
 
             response.EnsureSuccessStatusCode();
 
